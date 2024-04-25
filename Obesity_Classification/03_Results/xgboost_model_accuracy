@@ -1,0 +1,119 @@
+Basic model accuracy
+Manually calculated
+> accuracy
+[1] 0.9339217
+
+> confusionMatrix(y_pred, test_set$NObeyesdad)
+Confusion Matrix and Statistics
+
+          Reference
+Prediction    0    1    2    3    4    5    6
+         0  579   40    0    0    0    3    0
+         1   46  684    1    0    0   60    9
+         2    0    0  653   21    0   16   50
+         3    0    0   15  785    2    0    6
+         4    0    0    3    0 1008    0    0
+         5    5   39   15    0    2  449   53
+         6    1    7   41    6    0   79  512
+
+Overall Statistics
+                                          
+               Accuracy : 0.8998          
+                 95% CI : (0.8913, 0.9078)
+    No Information Rate : 0.195           
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.8825          
+                                          
+ Mcnemar's Test P-Value : NA              
+
+Statistics by Class:
+
+                     Class: 0 Class: 1 Class: 2 Class: 3 Class: 4 Class: 5 Class: 6
+Sensitivity            0.9176   0.8883   0.8970   0.9667   0.9960  0.73970  0.81270
+Specificity            0.9906   0.9738   0.9805   0.9947   0.9993  0.97513  0.97061
+Pos Pred Value         0.9309   0.8550   0.8824   0.9715   0.9970  0.79751  0.79257
+Neg Pred Value         0.9886   0.9804   0.9831   0.9938   0.9990  0.96585  0.97403
+Prevalence             0.1216   0.1484   0.1403   0.1565   0.1950  0.11696  0.12139
+Detection Rate         0.1116   0.1318   0.1258   0.1513   0.1942  0.08651  0.09865
+Detection Prevalence   0.1198   0.1541   0.1426   0.1557   0.1948  0.10848  0.12447
+Balanced Accuracy      0.9541   0.9310   0.9387   0.9807   0.9977  0.85741  0.89166
+
+KFolds Cross Validation Accuracy
+> accuracy
+[1] 0.9397669
+
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+
+Using One-hot Encoding
+> confusionMatrix(y_pred, test_set$NObeyesdad)
+Confusion Matrix and Statistics
+
+          Reference
+Prediction    0    1    2    3    4    5    6
+         0  577   40    0    0    0    3    0
+         1   49  686    1    0    0   62   10
+         2    0    1  652   21    0   16   54
+         3    0    0   15  785    2    0    6
+         4    0    0    3    0 1008    0    0
+         5    4   37   14    0    2  450   51
+         6    1    6   43    6    0   76  509
+
+Overall Statistics
+                                          
+               Accuracy : 0.8992          
+                 95% CI : (0.8907, 0.9073)
+    No Information Rate : 0.195           
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.8818          
+                                          
+ Mcnemar's Test P-Value : NA              
+
+Statistics by Class:
+
+                     Class: 0 Class: 1 Class: 2 Class: 3 Class: 4 Class: 5 Class: 6
+Sensitivity            0.9144   0.8909   0.8956   0.9667   0.9960  0.74135  0.80794
+Specificity            0.9906   0.9724   0.9794   0.9947   0.9993  0.97643  0.97105
+Pos Pred Value         0.9306   0.8490   0.8763   0.9715   0.9970  0.80645  0.79407
+Neg Pred Value         0.9882   0.9808   0.9829   0.9938   0.9990  0.96611  0.97340
+Prevalence             0.1216   0.1484   0.1403   0.1565   0.1950  0.11696  0.12139
+Detection Rate         0.1112   0.1322   0.1256   0.1513   0.1942  0.08671  0.09807
+Detection Prevalence   0.1195   0.1557   0.1434   0.1557   0.1948  0.10751  0.12351
+Balanced Accuracy      0.9525   0.9317   0.9375   0.9807   0.9977  0.85889  0.88949
+
+> xgb.importance(model = classifier)
+                              Feature         Gain        Cover    Frequency
+                               <char>        <num>        <num>        <num>
+ 1:                            Weight 6.312068e-01 4.399090e-01 0.2129712747
+ 2:                              FCVC 9.078325e-02 4.395810e-02 0.0558797127
+ 3:                            Height 8.485361e-02 8.681522e-02 0.1584380610
+ 4:                     Gender_Female 8.461364e-02 3.348946e-02 0.0273788151
+ 5:                               Age 2.842886e-02 9.490775e-02 0.1306104129
+ 6:                              CH2O 1.879667e-02 2.741156e-02 0.0486983842
+ 7:                               NCP 1.227761e-02 5.209785e-02 0.0527378815
+ 8:                           CALC_no 8.967368e-03 1.645554e-02 0.0184021544
+ 9:                               TUE 7.811057e-03 4.020012e-02 0.0491472172
+10:                               FAF 7.188230e-03 3.799562e-02 0.0509425494
+11:                                id 5.218623e-03 1.395432e-02 0.0893177738
+12:                           FAVC_no 4.920390e-03 1.791040e-02 0.0121184919
+13: family_history_with_overweight_no 3.225257e-03 2.240633e-02 0.0201974865
+14:                 MTRANS_Automobile 2.120177e-03 1.054096e-02 0.0100987433
+15:                   CAEC_Frequently 1.865699e-03 6.528317e-03 0.0148114901
+16:                           CAEC_no 1.841173e-03 9.687204e-03 0.0035906643
+17:                            SCC_no 1.757312e-03 1.330652e-02 0.0078545781
+18:                    CAEC_Sometimes 1.444167e-03 1.015227e-02 0.0067324955
+19:                    CALC_Sometimes 9.195218e-04 1.582089e-03 0.0078545781
+20:      MTRANS_Public_Transportation 8.480709e-04 1.833838e-03 0.0071813285
+21:                       CAEC_Always 5.433346e-04 9.889251e-03 0.0076301616
+22:                   CALC_Frequently 1.946528e-04 5.282440e-03 0.0035906643
+23:                    MTRANS_Walking 1.552092e-04 8.738836e-04 0.0031418312
+24:                          SMOKE_no 1.008162e-05 6.013828e-05 0.0002244165
+25:                  MTRANS_Motorbike 9.180286e-06 2.751830e-03 0.0004488330
+                              Feature         Gain        Cover    Frequency
+                              
+KFolds Cross Validation Accuracy
+> accuracy
+[1] 0.9388548
